@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tic Tac Toe</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet">
+
+</head>
+<body>
+	<section>
+
+		<h1>Tic-Tac-Toe</h1>
+		<div class="gameButton"><button class="gameClear">Clear Board</button></div>
+		<div><label></label></div>
+		
+		<div id="gameBoard">
+			<table id="gameBoxArea">
+				<tr id=gameBoardRow1 >			
+					<td id="gameBox1"><img src="cross copy.png"></td>
+					<td id="gameBox2"><img src="cross copy.png"></td>
+					<td id="gameBox3"><img src="cross copy.png"></td>	
+				</tr>	
+				<tr id="gameBoardRow2">
+					<td id="gameBox4"><img src="cross copy.png"></td>
+					<td id="gameBox5"><img src="cross copy.png"></td>
+					<td id="gameBox6"><img src="cross copy.png"></td>
+				</tr>
+				<tr id="gameBoardRow3">
+					<td id="gameBox7"><img src="cross copy.png"></td>
+					<td id="gameBox8"><img src="cross copy.png"></td>
+					<td id="gameBox9"><img src="cross copy.png"></td>
+				</tr>
+			</table>
+		</div>
+		
+
+	</section>
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+
+		var activePlayer = 1;
+		var activeGame = false;
+		var winningCombinations = [[0,1,2], [3,4,5], [6,7,8], [1,4,7],[2,5,8], [0,3,6], [0,4,8], [2,4,6]];
+		var gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+		$("#gameBoxArea").click( function() {
+			//event.preventDefault();
+			console.log("box clicked")
+		});
+		function buttonPressed() {
+
+		};
+
+	</script>
+
+</body>
+</html>
