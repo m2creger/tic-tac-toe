@@ -8,30 +8,36 @@
 </head>
 <body>
 	<section>
+		<div class="mainArea">
+			<div class="topHeading">
+				<h1>Tic-Tac-Toe</h1>
+				<div class="player1score"><h3 id="player1score">Player 1 Score:</h3></div>
+				<div class="player2score"><h3 id="player2score">Player 2 Score:</h3></div>
+				<div class="gameButton"><button class="gameClear">Clear Board</button></div>
+				<div><label class="gameMessage">Click Square to start game</label></div>
+			</div>
 
-		<h1>Tic-Tac-Toe</h1>
-		<div class="gameButton"><button class="gameClear">Clear Board</button></div>
-		<div><label></label></div>
-		
-		<div id="gameBoard">
-			<table id="gameBoxArea">
-				<tr id=gameBoardRow1 >			
-					<td id="gameBox1"><img src="cross copy.png"></td>
-					<td id="gameBox2"><img src="cross copy.png"></td>
-					<td id="gameBox3"><img src="cross copy.png"></td>	
-				</tr>	
-				<tr id="gameBoardRow2">
-					<td id="gameBox4"><img src="cross copy.png"></td>
-					<td id="gameBox5"><img src="cross copy.png"></td>
-					<td id="gameBox6"><img src="cross copy.png"></td>
-				</tr>
-				<tr id="gameBoardRow3">
-					<td id="gameBox7"><img src="cross copy.png"></td>
-					<td id="gameBox8"><img src="cross copy.png"></td>
-					<td id="gameBox9"><img src="cross copy.png"></td>
-				</tr>
-			</table>
+			<div id="gameBoard">
+				<table id="gameBoxArea">
+					<tr id=gameBoardRow1 >			
+						<td id="0"></td>
+						<td id="1"></td>
+						<td id="2"></td>	
+					</tr>	
+					<tr id="gameBoardRow2">
+						<td id="3"></td>
+						<td id="4"></td>
+						<td id="5"></td>
+					</tr>
+					<tr id="gameBoardRow3">
+						<td id="6"></td>
+						<td id="7"></td>
+						<td id="8"></td>
+					</tr>
+				</table>
+			</div>
 		</div>
+		
 		
 
 	</section>
@@ -39,17 +45,98 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 
+		var gameMessage = $(".gameMessage");
+		var currentBoxClicked;
+		var player1Score = 0;
+		var player2Score = 0;
+		var player1Won = false;
+		var player2Won = false;
+		var player1GamePlay = [];
+		var player2GamePlay = [];
 		var activePlayer = 1;
 		var activeGame = false;
-		var winningCombinations = [[0,1,2], [3,4,5], [6,7,8], [1,4,7],[2,5,8], [0,3,6], [0,4,8], [2,4,6]];
-		var gameState = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-		$("#gameBoxArea").click( function() {
-			//event.preventDefault();
-			console.log("box clicked")
-		});
-		function buttonPressed() {
+		var winningCombinations = [["0","1","2"], ["3","4","5"], ["6","7","8"], ["1","4","7"],["2","5","8"], ["0","3","6"], ["0","4","8"], ["2","4","6"]];
 
+		$("td").click( function() {
+			event.preventDefault();
+			console.log(this);
+			boxPressed(this);
+			
+		});
+		$("button").click( function() {
+			console.log("Button pressed");
+			$("td").empty();	
+		});
+			
+	
+		function boxPressed(element) {
+			switch(activePlayer) {
+				case 1:
+					var cross = $("<img />" , { id: "crossImage", src: "cross.png"}).appendTo(element);
+					
+					var boxClicked = $(element).attr("id");
+					player1GamePlay.push(boxClicked);
+					console.log("The box clicked is " + boxClicked)
+					checkForPlayer1Win();
+					activePlayer = 2;
+					break;
+				case 2:
+					var nought = $("<img />" , { id: "noughtImage", src: "nought.png"}).appendTo(element);
+					var boxClicked = $(element).attr("id");
+					player2GamePlay.push(boxClicked);
+					checkForPlayer2Win();
+					activePlayer = 1;
+					break;
+			}
 		};
+
+		function checkForPlayer1Win() {
+			for(var i = 0; i < winningCombinations.length; i++) {
+				
+				if ( player1GamePlay.indexOf(winningCombinations[i][0]) >= 0) {
+					if (player1GamePlay.indexOf(winningCombinations[i][1]) >= 0) {
+						if (player1GamePlay.indexOf(winningCombinations[i][2]) >= 0) {
+							console.log("player 1 wins");
+							player1Score++;
+
+							console.log(player1score);
+							$("#player1score").text("Player 1 Score: " + player1Score);
+							player1GamePlay = [];
+							player2GamePlay = [];
+							alert("Player 1 Wins")
+							gameWon();
+							return true;
+						}
+					}
+
+				}
+			}
+		}
+
+		function checkForPlayer2Win() {
+			for(var i = 0; i < winningCombinations.length; i++) {
+				
+				if ( player2GamePlay.indexOf(winningCombinations[i][0]) >= 0) {
+					if (player2GamePlay.indexOf(winningCombinations[i][1]) >= 0) {
+						if (player2GamePlay.indexOf(winningCombinations[i][2]) >= 0) {
+							console.log("player 2 wins");
+							player2Score++;
+							$("#player2score").text("Player 2 Score: " + player2Score);
+							player1GamePlay = [];
+							player2GamePlay = [];
+							alert("Player 2 Wins")
+							gameWon();
+							return true;
+						}
+					}
+
+				}
+			}
+		}
+
+		function gameWon() {
+			$("td").empty();
+		}
 
 	</script>
 

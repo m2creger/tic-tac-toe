@@ -1,32 +1,36 @@
-body {
-	text-align: center;
+html, body {
+	
+	height: 100%;
 }
 
 section {
 	max-width: 1000px;
+	
     margin-left: auto;
     margin-right: auto;
     font-family: 'Playfair Display SC', serif;
 }
-tr {
-
+tr, td {
+	border: 5px solid black;
 }
 td {
-	height: 214px;
-	width: 214px;
+	height: 250px;
+	width: 250px;
 }
 h1 {
 	font-size: 48px;
 	font-family: 'Rock Salt', cursive;
 }
-.gameBoard {
-	max-width: 800px;
-	align-items: center;
+.mainArea {
+	text-align: center;
+    margin: auto;
 
 }
-.gameBoxArea {
-	align-items: center;
+#gameBoard {
+	max-width: 800px;
+	margin: auto;
 }
+
 .gameClear {
 	width: 300px;
 	height: 100px;
@@ -34,9 +38,23 @@ h1 {
 	background-color: #42a5f5;
 	
 }
-.gameButton {
-	
+
+.gameMessage {
+	font-size: 24px;
+	font-family: 'Rock Salt', cursive;
+
 }
-.gameClear {
-	align-content: center;
+.player1score {
+	float: left;
+	font-family: 'Rock Salt', cursive;
+	font-size: 18px;
+}
+.player2score {
+	float: right;
+	font-family: 'Rock Salt', cursive;
+	font-size: 18px;
+}
+.topHeading {
+	padding: 15px;
+	margin: 5px;
 }
